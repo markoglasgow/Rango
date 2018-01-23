@@ -50,16 +50,18 @@ def populate():
             print("- {0} - {1}".format(str(c), str(p)))
 
 
-def add_page(cat, title, url, views=0):
+def add_page(cat, title, url, views=17):
     p = Page.objects.get_or_create(category=cat, title=title)[0]
-    p.url=url
-    p.views=views
+    p.url = url
+    p.views = views
     p.save()
     return p
 
 
 def add_cat(name, views, likes):
-    c = Category.objects.get_or_create(name=name, views=views, likes=likes)[0]
+    c = Category.objects.get_or_create(name=name)[0]
+    c.views = views
+    c.likes = likes
     c.save()
     return c
 
