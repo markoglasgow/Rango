@@ -51,6 +51,7 @@ def show_category(request, category_name_slug):
     return render(request, 'rango/category.html', context_dict)
 
 
+@login_required
 def add_category(request):
     form = CategoryForm()
 
@@ -66,6 +67,7 @@ def add_category(request):
     return render(request, 'rango/add_category.html', {'form': form})
 
 
+@login_required
 def add_page(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
@@ -179,6 +181,7 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the # blank dictionary object...
         return render(request, 'rango/login.html', {})
+
 
 @login_required
 def restricted(request):
